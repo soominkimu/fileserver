@@ -39,7 +39,7 @@ const mimeType = {
 }
 
 http.createServer((req, res) => {  // request, response
-  console.log(`${req.method} ${req.url}`);
+  console.log(chalk.blue(req.method), req.url);
 
   // parse URL
   const parsedUrl = url.parse(req.url);
@@ -55,7 +55,7 @@ http.createServer((req, res) => {  // request, response
     if (!exist) {
       res.statusCode = 404;
       res.end(`File ${pathname} not found!`);
-      console.log(`File ${pathname} not found!`);
+      console.log(chalk.red(`File ${pathname} not found!`));
       return;
     }
 
@@ -72,7 +72,7 @@ http.createServer((req, res) => {  // request, response
         const ext = path.parse(pathname).ext;
         res.setHeader('Content-type', mimeType[ext] || 'text/plain');
         // Website you wish to allow to connect
-        res.setHeader('Access-Control-Allow-Origin', '*');  // To prevent CORS
+        res.setHeader('Access-Control-Allow-Origin', '*'); // 'http://localhost:8080'); // CORS
         // Request methods you wish to allow
         //res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
         // Request headers you wish to allow
