@@ -51,8 +51,9 @@ http.createServer((req, res) => {  // request, response
   const sanitizePath = path.normalize(parsedUrl.pathname).replace(/^(\.\.[\/\\])+/, '');
   let pathname = path.join(__dirname, sanitizePath);
 
-  fs.exists(pathname, (exist) => {
-    if (!exist) {
+  fs.stat(pathname, (err, _stats) => {  // exists deprecated
+    // console.log(stats);
+    if (err) {
       res.statusCode = 404;
       res.end(`File ${pathname} not found!`);
       console.log(chalk.red(`File ${pathname} not found!`));
