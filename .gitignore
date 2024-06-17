@@ -4,3 +4,4 @@ assets/*
 data/*
 dataJSON
 wasm/*
+node_modules
