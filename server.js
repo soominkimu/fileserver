@@ -71,7 +71,7 @@ http.createServer((req, res) => {  // request, response
         console.log(chalk.red('Fail'), new Date());
       } else {
         const ext = path.parse(pathname).ext;
-        res.setHeader('Content-type', mimeType[ext] || 'text/plain');
+        res.setHeader('Content-type', mimeType[ext] || 'text/plain; charset=UTF-8');
         // Website you wish to allow to connect
         res.setHeader('Access-Control-Allow-Origin', '*'); // 'http://localhost:8080'); // CORS
         // Request methods you wish to allow

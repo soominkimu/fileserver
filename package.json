@@ -1,4 +1,8 @@
 {
+  "name": "fileserver",
+  "private": true,
+  "version": "0.2.0",
+  "license": "MIT",
   "dependencies": {
     "chalk": "^4"
   }
