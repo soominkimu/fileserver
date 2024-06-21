@@ -22,9 +22,9 @@ const port = process.argv[2] || 9001;
 // maps file extension to MIME types
 const mimeType = {
   '.ico': 'image/x-icon',
-  '.html': 'text/html',
-  '.js': 'text/javascript',
-  '.json': 'application/json',
+  '.html':'text/html',
+  '.js':  'text/javascript',
+  '.json':'application/json',
   '.css': 'text/css',
   '.png': 'image/png',
   '.jpg': 'image/jpeg',
@@ -35,11 +35,11 @@ const mimeType = {
   '.doc': 'application/msword',
   '.eot': 'appliaction/vnd.ms-fontobject',
   '.ttf': 'aplication/font-sfnt',
-  '.wasm': 'application/wasm'
+  '.wasm':'application/wasm'
 }
 
 http.createServer((req, res) => {  // request, response
-  console.log(chalk.blue(req.method), req.url);
+  process.stdout.write(chalk.blue(req.method) + req.url);
 
   // parse URL
   const parsedUrl = url.parse(req.url);
@@ -56,7 +56,7 @@ http.createServer((req, res) => {  // request, response
     if (err) {
       res.statusCode = 404;
       res.end(`File ${pathname} not found!`);
-      console.log(chalk.red(`File ${pathname} not found!`));
+      console.log(chalk.red(` ⇒ File ${pathname} not found!`));
       return;
     }
 
@@ -68,7 +68,7 @@ http.createServer((req, res) => {  // request, response
       if (err) {
         res.statusCode = 500;
         res.end(`Error getting the file: ${err}.`);
-        console.log(chalk.red('Fail'), new Date());
+        console.log(chalk.red(' ⇒ Fail'), new Date());
       } else {
         const ext = path.parse(pathname).ext;
         res.setHeader('Content-type', mimeType[ext] || 'text/plain; charset=UTF-8');
@@ -82,7 +82,7 @@ http.createServer((req, res) => {  // request, response
         // to the API (e.g. in case you use sessions)
         //res.setHeader('Access-Control-Allow-Credentials', true);
         res.end(data);
-        console.log(chalk.green('Success'), new Date());
+        console.log(chalk.green(' ⇒ Success'), new Date());
       }
     });
   });
