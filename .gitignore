@@ -1,6 +1,5 @@
 .DS_Store
 *.swp
-assets/
 data/
 dataJSON/
 wasm/
